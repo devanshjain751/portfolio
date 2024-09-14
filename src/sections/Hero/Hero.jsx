@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import styles from './HeroStyles.module.css';
 import heroImg from '../../assets/devansh.jpg';
 import sun from '../../assets/sun.svg';
@@ -18,6 +19,18 @@ function Hero() {
   const twitterIcon = theme === 'light' ? twitterLight : twitterDark;
   const githubIcon = theme === 'light' ? githubLight : githubDark;
   const linkedinIcon = theme === 'light' ? linkedinLight : linkedinDark;
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4164326616397650';
+    script.async = true;
+    script.crossOrigin = 'anonymous';
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <section id="hero" className={styles.container}>
@@ -42,24 +55,30 @@ function Hero() {
         </h1>
         <h2>Frontend Developer</h2>
         <span>
-          <a href="https://leetcode.com/u/Deavanshjain/" target="_blank">
-            <img src={twitterIcon} alt="Twitter icon" />
+          <a href="https://leetcode.com/u/Deavanshjain/" target="_blank" rel="noopener noreferrer">
+            <img src={twitterIcon} alt="Link to Devansh's Leetcode profile" />
           </a>
-          <a href="https://github.com/devanshjain751" target="_blank">
-            <img src={githubIcon} alt="Github icon" />
+          <a href="https://github.com/devanshjain751" target="_blank" rel="noopener noreferrer">
+            <img src={githubIcon} alt="Link to Devansh's GitHub profile" />
           </a>
-          <a href="www.linkedin.com/in/devanshjain751" target="_blank">
-            <img src={linkedinIcon} alt="Linkedin icon" />
+          <a href="https://www.linkedin.com/in/devanshjain751" target="_blank" rel="noopener noreferrer">
+            <img src={linkedinIcon} alt="Link to Devansh's LinkedIn profile" />
           </a>
         </span>
         <p className={styles.description}>
-          With a passion for developing modern React web apps for commercial
-          businesses.
+          With a passion for developing modern React web apps for commercial businesses.
         </p>
         <a href={CV} download>
           <button className="hover">Resume</button>
         </a>
       </div>
+
+      {/* Add the script at the end of the component */}
+      <script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4164326616397650"
+        crossOrigin="anonymous"
+      ></script>
     </section>
   );
 }
